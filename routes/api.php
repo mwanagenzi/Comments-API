@@ -18,5 +18,15 @@ use Illuminate\Http\Request;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+//Route::resource('comments', CommentController::class)->only([
+//    'index','show'
+//]);
 Route::apiResource('comments', CommentController::class);
 
+//Route::resource('comments',CommentController::class)->only([
+//    'update','store','destroy'
+//])->middleware('auth');
+
+Route::get('/private', function () {
+    return response()->json(['message' => 'Hello! You included a valid token with your request.']);
+})->middleware('auth');
